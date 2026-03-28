@@ -1214,8 +1214,8 @@
                 </div>
                 <div class="footer-links-group">
                     <h4 data-i18n="footer.legal">Legal</h4>
-                    <a href="/privacy.html" data-i18n="footer.privacy">Privacy Policy</a>
-                    <a href="/terms.html" data-i18n="footer.terms">Terms of Service</a>
+                    <a href="/privacy.html" class="legal-privacy-link" data-i18n="footer.privacy">Privacy Policy</a>
+                    <a href="/terms.html" class="legal-terms-link" data-i18n="footer.terms">Terms of Service</a>
                 </div>
             </div>
             <div class="footer-bottom">
@@ -1301,12 +1301,12 @@
                 'price.note': '7 Tage kostenlos testen. Jederzeit kündbar. Keine versteckten Gebühren.', 'price.badge.secure': '🔒 Sicherer Checkout',
                 'contact.title': 'Bereit loszulegen?', 'contact.sub': 'Kontaktieren Sie uns und wir helfen Ihnen bei der Einrichtung. 7 Tage kostenlose Testphase.',
                 'form.name': 'Name *', 'form.email': 'E-Mail *', 'form.company': 'Unternehmen', 'form.message': 'Nachricht *',
-                'form.consent': 'Ich stimme der <a href="/privacy.html" target="_blank">Datenschutzerklärung</a> und den <a href="/terms.html" target="_blank">Nutzungsbedingungen</a> zu',
+                'form.consent': 'Ich stimme der <a href="/privacy.de.html" target="_blank">Datenschutzerklärung</a> und den <a href="/terms.de.html" target="_blank">Nutzungsbedingungen</a> zu',
                 'form.submit': 'Anfrage senden',
                 'footer.about': 'KI-Plattform für automatisierte Zoom-Meeting-Transkription und intelligente Protokollerstellung. Weltweit im Einsatz.',
                 'footer.product': 'Produkt', 'footer.legal': 'Rechtliches', 'footer.privacy': 'Datenschutzerklärung', 'footer.terms': 'Nutzungsbedingungen',
                 'footer.rights': 'Alle Rechte vorbehalten.', 'footer.entity': 'Betrieben von Natalia Tomasheva, Einzelunternehmerin',
-                'cookie.text': 'Wir verwenden Cookies zur Verbesserung Ihrer Erfahrung. Durch Fortfahren stimmen Sie unserer <a href="/privacy.html">Datenschutzerklärung</a> zu.', 'cookie.accept': 'Akzeptieren'
+                'cookie.text': 'Wir verwenden Cookies zur Verbesserung Ihrer Erfahrung. Durch Fortfahren stimmen Sie unserer <a href="/privacy.de.html">Datenschutzerklärung</a> zu.', 'cookie.accept': 'Akzeptieren'
             },
             es: {
                 'nav.how': 'Cómo funciona', 'nav.features': 'Funciones', 'nav.pricing': 'Precios', 'nav.contact': 'Contacto',
@@ -1336,16 +1336,32 @@
                 'price.note': '7 días de prueba gratis. Cancele en cualquier momento. Sin cargos ocultos.', 'price.badge.secure': '🔒 Pago seguro',
                 'contact.title': '¿Listo para comenzar?', 'contact.sub': 'Contáctenos y le ayudaremos a configurar la automatización. 7 días de prueba gratis.',
                 'form.name': 'Nombre *', 'form.email': 'Email *', 'form.company': 'Empresa', 'form.message': 'Mensaje *',
-                'form.consent': 'Acepto la <a href="/privacy.html" target="_blank">Política de privacidad</a> y los <a href="/terms.html" target="_blank">Términos de servicio</a>',
+                'form.consent': 'Acepto la <a href="/privacy.es.html" target="_blank">Política de privacidad</a> y los <a href="/terms.es.html" target="_blank">Términos de servicio</a>',
                 'form.submit': 'Enviar solicitud',
                 'footer.about': 'Plataforma con IA para transcripción automática de reuniones Zoom y generación inteligente de protocolos. Sirviendo equipos en todo el mundo.',
                 'footer.product': 'Producto', 'footer.legal': 'Legal', 'footer.privacy': 'Política de privacidad', 'footer.terms': 'Términos de servicio',
                 'footer.rights': 'Todos los derechos reservados.', 'footer.entity': 'Operado por Natalia Tomasheva, Empresaria Individual',
-                'cookie.text': 'Usamos cookies para mejorar su experiencia. Al continuar, acepta nuestra <a href="/privacy.html">Política de privacidad</a>.', 'cookie.accept': 'Aceptar'
+                'cookie.text': 'Usamos cookies para mejorar su experiencia. Al continuar, acepta nuestra <a href="/privacy.es.html">Política de privacidad</a>.', 'cookie.accept': 'Aceptar'
             }
         };
 
         let lang = localStorage.getItem('lang_int') || 'en';
+
+        function getLegalPath(docType, language) {
+            const map = {
+                en: { privacy: '/privacy.html', terms: '/terms.html' },
+                de: { privacy: '/privacy.de.html', terms: '/terms.de.html' },
+                es: { privacy: '/privacy.es.html', terms: '/terms.es.html' }
+            };
+            return (map[language] || map.en)[docType];
+        }
+
+        function updateLegalLinks(language) {
+            const privacyHref = getLegalPath('privacy', language);
+            const termsHref = getLegalPath('terms', language);
+            document.querySelectorAll('.legal-privacy-link').forEach(link => link.setAttribute('href', privacyHref));
+            document.querySelectorAll('.legal-terms-link').forEach(link => link.setAttribute('href', termsHref));
+        }
 
         function setLang(l) {
             lang = l;
@@ -1358,6 +1374,7 @@
                     else el.textContent = T[l][k];
                 }
             });
+            updateLegalLinks(l);
             localStorage.setItem('lang_int', l);
         }
 
