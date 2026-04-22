@@ -956,7 +956,7 @@
                 <a href="#pricing" data-i18n="nav.pricing">Pricing</a>
                 <a href="#contact" data-i18n="nav.contact">Contact</a>
                 <!-- Cabinet (SPA on spa.axiomeet.io, CF-proxied to Railway axiomeet-web) -->
-                <a href="https://spa.axiomeet.io/login" class="nav-login" rel="nofollow" data-i18n="nav.login">Sign In</a>
+                <a href="https://spa.axiomeet.io/login" class="nav-login cabinet-link" data-cabinet-path="/login" rel="nofollow" data-i18n="nav.login">Sign In</a>
                 <div class="lang-switch">
                     <button class="lang-btn active" data-lang="en">EN</button>
                     <button class="lang-btn" data-lang="de">DE</button>
@@ -985,7 +985,7 @@
                     protocols with action items, decisions, and key insights. Save 5+ hours every week.</p>
                 <div class="hero-buttons">
                     <a href="#contact" class="btn btn-primary" data-i18n="hero.cta1">Start Free Trial</a>
-                    <a href="https://spa.axiomeet.io/login" class="btn btn-outline" rel="nofollow" data-i18n="hero.cta3">Sign In</a>
+                    <a href="https://spa.axiomeet.io/login" class="btn btn-outline cabinet-link" data-cabinet-path="/login" rel="nofollow" data-i18n="hero.cta3">Sign In</a>
                     <a href="#how-it-works" class="btn btn-secondary" data-i18n="hero.cta2">Learn More →</a>
                 </div>
                 <div class="hero-stats">
@@ -1230,8 +1230,8 @@
                     <a href="#pricing" data-i18n="nav.pricing">Pricing</a>
                     <a href="#how-it-works" data-i18n="nav.how">How It Works</a>
                     <a href="#contact" data-i18n="nav.contact">Contact</a>
-                    <a href="https://spa.axiomeet.io/login" rel="nofollow" data-i18n="nav.login">Sign In</a>
-                    <a href="https://spa.axiomeet.io/register" rel="nofollow" data-i18n="nav.register">Sign Up</a>
+                    <a href="https://spa.axiomeet.io/login" class="cabinet-link" data-cabinet-path="/login" rel="nofollow" data-i18n="nav.login">Sign In</a>
+                    <a href="https://spa.axiomeet.io/register" class="cabinet-link" data-cabinet-path="/register" rel="nofollow" data-i18n="nav.register">Sign Up</a>
                 </div>
                 <div class="footer-links-group">
                     <h4 data-i18n="footer.legal">Legal</h4>
@@ -1399,7 +1399,17 @@
                 }
             });
             updateLegalLinks(l);
+            updateCabinetLinks(l);
             localStorage.setItem('lang_int', l);
+        }
+
+        // Append ?lang=<current> to cabinet links so SPA opens in the same
+        // language the visitor picked on the landing.
+        function updateCabinetLinks(language) {
+            document.querySelectorAll('.cabinet-link').forEach((a) => {
+                const path = a.dataset.cabinetPath || '/login';
+                a.setAttribute('href', `https://spa.axiomeet.io${path}?lang=${language}`);
+            });
         }
 
         document.querySelectorAll('.lang-btn').forEach(b => b.addEventListener('click', () => setLang(b.dataset.lang)));
