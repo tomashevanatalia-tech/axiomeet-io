@@ -107,6 +107,22 @@
             color: var(--light);
         }
 
+        /* Login CTA in nav (separate from plain nav links) */
+        .nav-links .nav-login {
+            color: var(--primary-light);
+            border: 1.5px solid var(--primary);
+            padding: 7px 16px;
+            border-radius: 10px;
+            font-size: 14px;
+            margin-left: 4px;
+            transition: all 0.2s;
+        }
+
+        .nav-links .nav-login:hover {
+            background: var(--primary);
+            color: #fff;
+        }
+
         .lang-switch {
             display: flex;
             gap: 4px;
@@ -939,6 +955,8 @@
                 <a href="#features" data-i18n="nav.features">Features</a>
                 <a href="#pricing" data-i18n="nav.pricing">Pricing</a>
                 <a href="#contact" data-i18n="nav.contact">Contact</a>
+                <!-- Cabinet (SPA on spa.axiomeet.io, CF-proxied to Railway axiomeet-web) -->
+                <a href="https://spa.axiomeet.io/login" class="nav-login" rel="nofollow" data-i18n="nav.login">Sign In</a>
                 <div class="lang-switch">
                     <button class="lang-btn active" data-lang="en">EN</button>
                     <button class="lang-btn" data-lang="de">DE</button>
@@ -967,6 +985,7 @@
                     protocols with action items, decisions, and key insights. Save 5+ hours every week.</p>
                 <div class="hero-buttons">
                     <a href="#contact" class="btn btn-primary" data-i18n="hero.cta1">Start Free Trial</a>
+                    <a href="https://spa.axiomeet.io/login" class="btn btn-outline" rel="nofollow" data-i18n="hero.cta3">Sign In</a>
                     <a href="#how-it-works" class="btn btn-secondary" data-i18n="hero.cta2">Learn More →</a>
                 </div>
                 <div class="hero-stats">
@@ -1211,6 +1230,8 @@
                     <a href="#pricing" data-i18n="nav.pricing">Pricing</a>
                     <a href="#how-it-works" data-i18n="nav.how">How It Works</a>
                     <a href="#contact" data-i18n="nav.contact">Contact</a>
+                    <a href="https://spa.axiomeet.io/login" rel="nofollow" data-i18n="nav.login">Sign In</a>
+                    <a href="https://spa.axiomeet.io/register" rel="nofollow" data-i18n="nav.register">Sign Up</a>
                 </div>
                 <div class="footer-links-group">
                     <h4 data-i18n="footer.legal">Legal</h4>
@@ -1240,10 +1261,11 @@
         const T = {
             en: {
                 'nav.how': 'How It Works', 'nav.features': 'Features', 'nav.pricing': 'Pricing', 'nav.contact': 'Contact',
+                'nav.login': 'Sign In', 'nav.register': 'Sign Up',
                 'hero.badge': 'AI-Powered Meeting Automation',
                 'hero.t1': 'Transcription', 'hero.t2': '& Protocols', 'hero.t3': 'for Your Meetings', 'hero.t4': 'in Minutes',
                 'hero.sub': 'Automatically convert Zoom recordings into structured protocols with action items, decisions, and key insights. Save 5+ hours every week.',
-                'hero.cta1': 'Start Free Trial', 'hero.cta2': 'Learn More →',
+                'hero.cta1': 'Start Free Trial', 'hero.cta2': 'Learn More →', 'hero.cta3': 'Sign In',
                 'hero.s1': 'transcription accuracy', 'hero.s2': 'recording to protocol', 'hero.s3': 'automated processing',
                 'trust.1': 'End-to-End Encryption', 'trust.2': 'GDPR Compliant', 'trust.3': 'Your Data, Your Cloud', 'trust.4': 'OAuth 2.0 Security', 'trust.5': 'Crypto Payments Accepted',
                 'how.title': 'How It Works', 'how.sub': 'Four simple steps from recording to ready document',
@@ -1275,10 +1297,11 @@
             },
             de: {
                 'nav.how': 'Wie es funktioniert', 'nav.features': 'Funktionen', 'nav.pricing': 'Preise', 'nav.contact': 'Kontakt',
+                'nav.login': 'Anmelden', 'nav.register': 'Registrieren',
                 'hero.badge': 'KI-gestützte Meeting-Automatisierung',
                 'hero.t1': 'Transkription', 'hero.t2': '& Protokolle', 'hero.t3': 'für Ihre Meetings', 'hero.t4': 'in Minuten',
                 'hero.sub': 'Konvertieren Sie Zoom-Aufnahmen automatisch in strukturierte Protokolle mit Aufgaben, Entscheidungen und wichtigen Erkenntnissen. Sparen Sie über 5 Stunden pro Woche.',
-                'hero.cta1': 'Kostenlos testen', 'hero.cta2': 'Mehr erfahren →',
+                'hero.cta1': 'Kostenlos testen', 'hero.cta2': 'Mehr erfahren →', 'hero.cta3': 'Anmelden',
                 'hero.s1': 'Transkriptionsgenauigkeit', 'hero.s2': 'Aufnahme bis Protokoll', 'hero.s3': 'automatisierte Verarbeitung',
                 'trust.1': 'Ende-zu-Ende-Verschlüsselung', 'trust.2': 'DSGVO-konform', 'trust.3': 'Ihre Daten, Ihre Cloud', 'trust.4': 'OAuth 2.0 Sicherheit', 'trust.5': 'Krypto-Zahlungen akzeptiert',
                 'how.title': 'Wie es funktioniert', 'how.sub': 'Vier einfache Schritte von der Aufnahme zum fertigen Dokument',
@@ -1310,10 +1333,11 @@
             },
             es: {
                 'nav.how': 'Cómo funciona', 'nav.features': 'Funciones', 'nav.pricing': 'Precios', 'nav.contact': 'Contacto',
+                'nav.login': 'Iniciar sesión', 'nav.register': 'Registrarse',
                 'hero.badge': 'Automatización de reuniones con IA',
                 'hero.t1': 'Transcripción', 'hero.t2': 'y protocolos', 'hero.t3': 'de sus reuniones', 'hero.t4': 'en minutos',
                 'hero.sub': 'Convierta automáticamente las grabaciones de Zoom en protocolos estructurados con tareas, decisiones e ideas clave. Ahorre más de 5 horas por semana.',
-                'hero.cta1': 'Prueba gratuita', 'hero.cta2': 'Más información →',
+                'hero.cta1': 'Prueba gratuita', 'hero.cta2': 'Más información →', 'hero.cta3': 'Iniciar sesión',
                 'hero.s1': 'precisión de transcripción', 'hero.s2': 'grabación a protocolo', 'hero.s3': 'procesamiento automático',
                 'trust.1': 'Cifrado de extremo a extremo', 'trust.2': 'Cumple con GDPR', 'trust.3': 'Sus datos, su nube', 'trust.4': 'Seguridad OAuth 2.0', 'trust.5': 'Pagos con cripto aceptados',
                 'how.title': 'Cómo funciona', 'how.sub': 'Cuatro pasos simples de la grabación al documento listo',
